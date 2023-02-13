@@ -1,0 +1,32 @@
+The thought process for modeling and solving the game involves several steps, 
+including defining the game requirements, creating a game design, and implementing
+the game logic using a programming language.
+
+In terms of the game requirements, the goal is to create a game similar to the classic
+arcade game Galaga, where the player controls a weapon to shoot down enemies, and the
+enemies move from right to left. The game should have a start button, a shooting mechanism, 
+and enemies that move and can be destroyed by the shots.
+
+The game design involves creating a layout for the game, including the position of the weapon,
+the start button, and the enemies. The design should also include the visual appearance of the
+weapon, the start button, and the enemies.
+
+To implement the game logic, object-oriented principles are involved in several parts of the
+solution. Firstly, the weapon and enemies can be modeled as objects in the game, with their 
+own properties such as position, appearance, and behavior. This allows for easy manipulation 
+and control of these elements in the game.
+
+Secondly, the shooting mechanism can be implemented using object-oriented principles by creating 
+a class for the shots, with properties such as position and movement. This allows for easy control 
+of the shots in the game and ensures that the shots behave as intended.
+
+Finally, the collision detection between the shots and the enemies can be implemented using 
+object-oriented principles. This involves checking if the positions of the shots and enemies 
+intersect, and if so, destroying both the shot and the enemy.
+
+In conclusion, object-oriented principles play a crucial role in modeling and solving the game 
+by providing a structured approach to representing and controlling the elements in the game.
+
+
+
+

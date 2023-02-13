@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 22</title>
+  </head>
+  <body>
+    <div
+      id="change-color"
+      style="height: 500px; width: 500px; background-color: blue"
+    ></div>
+    <button style="height: 100px; width: 200px" id="press-and-change">
+      Color!
+    </button>
+    <script>
+      let changeColor = document.getElementById("change-color");
+      let buttonColor = document.getElementById("press-and-change");
+      // Everytime the function is called, a new color is
+      // randomly genereted.
+      buttonColor.onclick = () => {
+        let getRandomNumber = function getRandomNumber() {
+          return Math.floor(Math.random() * 256);
+        };
+
+        changeColor.style.backgroundColor = `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`;
+      };
+    </script>
+  </body>
+</html>

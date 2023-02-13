@@ -1,0 +1,43 @@
+body {
+  background-color: black;
+}
+.main-title {
+  color: aliceblue;
+  position: fixed;
+  left: 39%;
+  top: 0;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.main-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.cannon {
+  background-color: aqua;
+  width: 100px;
+  height: 30px;
+  position: fixed;
+  top: 100px;
+}
+
+.circle {
+  background-color: red;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  position: fixed;
+  top: 100px;
+  left: 80px;
+}
+
+.reload {
+  width: 200px;
+  height: 50px;
+  font-size: 2rem;
+  right: 0;
+  position: fixed;
+  font-weight: bold;
+}

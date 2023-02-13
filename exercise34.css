@@ -1,0 +1,102 @@
+.box {
+  width: 100px;
+  height: 100px;
+  bottom: 600px;
+  background-color: blue;
+  position: fixed;
+  animation: moveBox;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moveBox {
+  0% {
+    bottom: 600px;
+  }
+  10% {
+    bottom: 0px;
+  }
+  19% {
+    bottom: 540px;
+  }
+  28% {
+    bottom: 0px;
+  }
+  36% {
+    bottom: 480px;
+  }
+  44% {
+    bottom: 0px;
+  }
+  51% {
+    bottom: 420px;
+  }
+  58% {
+    bottom: 0px;
+  }
+  64% {
+    bottom: 360px;
+  }
+  70% {
+    bottom: 0px;
+  }
+  75% {
+    bottom: 300px;
+  }
+  80% {
+    bottom: 0px;
+  }
+  84% {
+    bottom: 240px;
+  }
+  88% {
+    bottom: 0px;
+  }
+  91% {
+    bottom: 180px;
+  }
+  94% {
+    bottom: 0px;
+  }
+  96% {
+    bottom: 120px;
+  }
+  98% {
+    bottom: 0px;
+  }
+  99% {
+    bottom: 60px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+
+/* Logic:  */
+/* I did a simple analysis which follows the problem as it is stated: 
+1)	Every bounce the height decreases 10% 
+2)	To simplify things I decided to consider that the time taken decreases linearly as well. 
+In the following table I put the logic: 
+Initial position | final position | time taken
+    600px        |      0px       |   1 Units
+      0px        |    540px       |  .9 Units
+    540px        |      0px       |  .9 Units
+      0px        |    480px       |  .8 Units
+    480px        |      0px       |  .8 Units
+      0px        |    420px       |  .7 Units
+    420px        |      0px       |  .7 Units
+      0px        |    360px       |  .6 Units
+    360px        |      0px       |  .6 Units
+      0px        |    300px       |  .5 Units
+    300px        |      0px       |  .5 Units
+      0px        |    240px       |  .4 Units
+    240px        |      0px       |  .4 Units
+      0px        |    180px       |  .3 Units
+    180px        |      0px       |  .3 Units
+      0px        |    120px       |  .2 Units
+    120px        |      0px       |  .2 Units
+      0px        |     60px       |  .1 Units
+     60px        |      0px       |  .1 Units
+      0px        |      0px       |   0 Units */

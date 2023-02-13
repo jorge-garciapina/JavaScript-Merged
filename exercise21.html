@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // What is the outcome of the following code?
+      // -----START: PART 1-----
+      console.log("PART 1");
+      // There are two scopes in this part:
+      // 1) Block inside the anonymous IIFE
+      // 2) Block outside
+      var foo = "hello";
+      (function () {
+        var bar = "World";
+        // In this alert it is possible to access
+        // -foo- because it is a global variable
+        alert(foo + bar);
+      })();
+      // This alert fails to execute because
+      // -bar- is a local variable that cannot be
+      // access fro outside
+      // alert(foo + bar);
+      // ----- END: PART 1 -----
+
+      // -----START: PART 2-----
+      console.log("PART 2");
+      // To answer this part it is possible to use
+      // what it was studied in question 60 of the
+      // JavaScript Merged questionary, in that part
+      // we learned that:
+      // "In practice, all the values that exist in
+      // JavaScript can be converted to boolean values"
+      // In practice, all the objects that exist in
+      // JavaScript (including arrays and functions)
+      // are -true-
+      if ([]) console.log("array is true");
+
+      // To understand this second part it is possible to
+      // use the answer of question 30 of the JavaScript Merged:
+      // The double equal (==) checks for loose equality, this
+      // means that JS will try to convert both sides of the
+      // equality to the same type before making the comparison.
+      // The empty array is associated with -false-
+      // Nothing is log on the console.
+      if ([] == true) console.log("array == true");
+      // ----- END: PART 2 -----
+
+      // // -----START: PART 3-----
+      console.log("PART 3");
+      // Due to the asynchronous nature of the setTimeout function,
+      // all 5 setTimeout functions will be executed  after the for
+      // loop has completed its execution. The value of i that is logged
+      // to the console will be the value of i after the for loop has
+      // completed its execution, which is 5.
+      for (let i = 0; i < 5; ++i) {
+        setTimeout(function () {
+          console.log("Part 3 delay");
+          console.log("counter: ", i);
+        }, 100);
+      }
+      // // ----- END: PART 3 -----
+
+      // -----START: PART 4-----
+      console.log("PART 4");
+      // This code creates an object obj with a property -prop-
+      var obj = {
+        prop: {},
+      };
+
+      // The delete operator is used to remove the -prop-
+      // property from the obj
+      delete obj.prop;
+
+      // Since the prop property has been deleted, the value
+      // logged to the console is undefined.
+      console.log(obj.prop);
+      // // ----- END: PART 4 -----
+    </script>
+  </body>
+</html>

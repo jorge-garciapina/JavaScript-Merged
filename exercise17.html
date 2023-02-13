@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="info"></div>
+    <div id="body">
+      <div class="info">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    // Object define in exerxice16.js
+    var candidate = {
+      name: {
+        firstName: "John",
+        lastName: "Galt",
+        phone: "123-456-7890",
+      },
+      printName: function () {
+        // For "printName" the -this- keyword is the object itself
+        return this.name.firstName + " " + this.name.lastName;
+      },
+    };
+
+    // Extracting full name
+    let fullName = candidate.printName().split(" ");
+
+    // 1) Select the second div with class info
+    let infoDiv = document.getElementById("body").children[0];
+    // 2) To find the children of the second -info- div
+    let children = infoDiv.children;
+    // 3) Insert the candidate’s first name into that div’s first child
+    children[0].textContent = fullName[0];
+    // 4) Insert the full name into the second div using the printName method
+    children[1].textContent = fullName.join(" ");
+
+    // Basic styles:
+    // Styles for the second -info- container:
+    infoDiv.style.width = "500px";
+    infoDiv.style.height = "200px";
+    infoDiv.style.backgroundColor = "Red";
+
+    // Styles for the first child:
+    children[0].style.width = "100%";
+    children[0].style.height = "50%";
+    children[0].style.backgroundColor = "pink";
+
+    // Styles for the second child:
+    children[1].style.width = "100%";
+    children[1].style.height = "50%";
+    children[1].style.backgroundColor = "green";
+  </script>
+</html>

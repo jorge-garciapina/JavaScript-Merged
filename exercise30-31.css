@@ -1,0 +1,14 @@
+p:nth-child(even) {
+  background-color: #ddd;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  display: none;
+}
+
+p:nth-child(odd) {
+  background-color: #eee;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  padding: 10px;
+}
