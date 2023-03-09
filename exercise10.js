@@ -4,7 +4,6 @@
 //   * Create another constructor of a Medic to inherit from Person
 //     Pass name, last name and specialty as parameters
 //   * Write an ajax GET request that sends data from the Person object
-
 class Person {
   constructor(name, lastName) {
     this.name = name;
@@ -29,16 +28,20 @@ class Medic extends Person {
 // Create a new instance of the Medic class
 let medic = new Medic("John", "Doe", "Surgeon");
 
-// Send an AJAX GET request using jQuery
-$.ajax({
-  type: "GET",
-  url: "some.api.com/person",
-  data: {
-    name: medic.name,
-    lastName: medic.lastName,
-    specialty: medic.specialty,
-  },
-  success: function (data) {
-    console.log(data);
-  },
-});
+// Send an AJAX GET request using vanilla JavaScript
+let xhr = new XMLHttpRequest();
+xhr.open(
+  "GET",
+  "some.api.com/person?name=" +
+    medic.name +
+    "&lastName=" +
+    medic.lastName +
+    "&specialty=" +
+    medic.specialty
+);
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    console.log(xhr.responseText);
+  }
+};
+xhr.send();
