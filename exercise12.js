@@ -1,40 +1,19 @@
-Date.prototype.getFormattedDateTime = function () {
-  var months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  var year = this.getFullYear();
-  var month = months[this.getMonth()];
-  var date = this.getDate();
-  var hours = this.getHours();
-  var minutes = this.getMinutes();
-  var seconds = this.getSeconds();
-  return (
-    date +
-    " " +
-    month +
-    " " +
-    year +
-    " " +
-    hours +
-    ":" +
-    minutes +
-    ":" +
-    seconds
-  );
-};
+function addHoursToDate(date, hours) {
+  // Convert the hours to milliseconds
+  const milliseconds = hours * 60 * 60 * 1000;
 
-// With this custom method added, it is possible to use the
-// following code to get the date and time in the custom format:
-var currentDate = new Date();
-console.log(currentDate.getFormattedDateTime());
+  // Add the milliseconds to the date
+  date.setTime(date.getTime() + milliseconds);
+
+  // Return the updated date
+  return date;
+}
+
+// Create a new date object
+let myDate = new Date();
+
+// Call the addHoursToDate function to modify the date
+addHoursToDate(myDate, 5); // adds 1 hour to the date
+
+// Output the modified date
+console.log(myDate);
