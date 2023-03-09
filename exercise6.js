@@ -1,7 +1,9 @@
 function repeatMonths(input) {
-  let months = input.split(" ");
-  let repeatMonths = [];
-  let monthsArray = [
+  let followingMonth;
+  let output = [];
+  let inputConvertedToArray = input.split(" ");
+  let monthsBeforeRepetition = [];
+  let monthsOfTheYear = [
     "January",
     "February",
     "March",
@@ -15,22 +17,35 @@ function repeatMonths(input) {
     "November",
     "December",
   ];
-  // Iterates over the elements of the input months
-  // it stops when finds a repeated month.
-  for (let i = 0; i < months.length; i++) {
-    if (!repeatMonths.includes(months[i])) {
-      repeatMonths.push(months[i]);
+
+  // Iterate over the elements of the input inputConvertedToArray
+  for (let i = 0; i < inputConvertedToArray.length; i++) {
+    if (monthsBeforeRepetition.includes(inputConvertedToArray[i])) {
+      let lastMonthBeforeRepetition =
+        monthsBeforeRepetition[monthsBeforeRepetition.length - 1];
+
+      let indexOfNextMonth = monthsOfTheYear.indexOf(lastMonthBeforeRepetition);
+      followingMonth = monthsOfTheYear[(indexOfNextMonth + 1) % 12];
+      output.push(followingMonth);
+      output.push(inputConvertedToArray[i]);
+      monthsBeforeRepetition = [];
     } else {
-      // When a month is repeated, just add the following month
-      // of the calendar
-      repeatMonths.push(monthsArray[i]);
-      break;
+      output.push(inputConvertedToArray[i]);
+
+      monthsBeforeRepetition.push(inputConvertedToArray[i]);
     }
   }
 
-  return repeatMonths.concat(repeatMonths);
+  output.push(followingMonth);
+
+  return output.join(" ");
 }
 
-let months = repeatMonths("January February March January February March");
+console.log(repeatMonths("January February March January February March"));
+// Output: "January February March April January February March April"
 
-console.log(months);
+console.log(repeatMonths("February March February March"));
+// Output: "February March April February March April"
+
+console.log(repeatMonths("November December November December"));
+// Output: "November December January November December January"
