@@ -1,6 +1,3 @@
-// Create a function that will return the properties that
-// are different between 2 objects.
-
 let plane = {
   wheels: 4,
   fuel: "Jet A",
@@ -22,27 +19,31 @@ let jet = {
 
 function differenceFinder(obj1, obj2) {
   let differentProperties = {};
-
   // 1) Properties of object 1
   for (let property in obj1) {
-    // If the property is not in obj2
-    if (!propertiesObj2.includes(property)) {
-      differentProperties[property] = { Object1: obj1[property], Object2: "" };
-    }
-    // If the property is in both objects and has different values
-    else if (obj1[property] !== obj2[property]) {
+    if (!obj2.hasOwnProperty(property)) {
       differentProperties[property] = {
         Object1: obj1[property],
+        Object2: "",
+      };
+    }
+  }
+
+  for (let property in obj2) {
+    if (!obj1.hasOwnProperty(property)) {
+      differentProperties[property] = {
+        Object1: "",
         Object2: obj2[property],
       };
     }
   }
 
-  // 2) Properties of object 2
-  for (let property in obj2) {
-    // If the property is not in obj1
-    if (!propertiesObj1.includes(property)) {
-      differentProperties[property] = { Object1: "", Object2: obj2[property] };
+  for (let property in obj1) {
+    if (obj2.hasOwnProperty(property) && obj1[property] !== obj2[property]) {
+      differentProperties[property] = {
+        Object1: obj1[property],
+        Object2: obj2[property],
+      };
     }
   }
 
