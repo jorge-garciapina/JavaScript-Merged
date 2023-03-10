@@ -33,9 +33,11 @@
     function toggleDiv() {
       // Div to hide:
       let hiddenDiv = document.getElementById("hiddenDiv");
+      let styles = window.getComputedStyle(hiddenDiv);
+      let isHidden = styles.display === "none";
+
       // Hide and Show functionallity
-      console.log("Hola");
-      if (hiddenDiv.style.display === "none") {
+      if (isHidden) {
         hiddenDiv.style.display = "block";
       } else {
         hiddenDiv.style.display = "none";
