@@ -1,17 +1,10 @@
-// Create a function that will remove specific elements from an array.  (1 hours)
 function removeElements(inputArray, elementsToRemove) {
-  let output = [];
-  for (let removeItem of elementsToRemove) {
-    for (let element of inputArray) {
-      if (removeItem !== element) {
-        output.push(element);
-      }
+  for (let i = inputArray.length - 1; i >= 0; i--) {
+    if (elementsToRemove.includes(inputArray[i])) {
+      inputArray.splice(i, 1);
     }
   }
-
-  return output;
-
-  //   console.log(inputArray);
+  return inputArray;
 }
 
 let modifiedArray = removeElements(
