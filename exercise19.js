@@ -1,73 +1,77 @@
 function matchString(pattern, string) {
-  let patternIndex = 0; // Keeps track of the current index in the pattern string
-  let stringIndex = 0; // Keeps track of the current index in the input string
+  const patternLen = pattern.length;
+  const stringLen = string.length;
 
-  // Loop through both the pattern and input string
-  while (patternIndex < pattern.length && stringIndex < string.length) {
-    let patternChar = pattern[patternIndex]; // Get the current character in the pattern
-    let stringChar = string[stringIndex]; // Get the current character in the input string
+  let output;
+  let oneIsEmpty = patternLen === 0 || stringLen === 0;
+  let patternIsBigger = patternLen > stringLen;
 
-    if (patternChar === "*") {
-      // Check if the current character in the pattern is a wildcard
-      // If the current character in the pattern is a wildcard, skip it and move on to the next character in the pattern
-      patternIndex++;
-
-      // Check if the next character in the pattern is a wildcard or not
-      if (pattern[patternIndex] === "*") {
-        // If the next character in the pattern is also a wildcard, move the patternIndex to the next character and continue
-        patternIndex++;
-        continue;
-      }
-
-      // Find the next occurrence of the character after the wildcard in the input string
-      let nextCharIndex = string.indexOf(pattern[patternIndex], stringIndex);
-
-      // If the next occurrence of the character is not found, return false
-      if (nextCharIndex === -1) {
-        return false;
-      }
-
-      // Set the stringIndex to the next occurrence of the character in the input string
-      stringIndex = nextCharIndex;
-    } else if (patternChar === stringChar) {
-      // If the current characters in both the pattern and input string matchString
-      // Move both the patternIndex and stringIndex to the next character
-      patternIndex++;
-      stringIndex++;
-    } else {
-      // If the current characters do not matchString, return false
-      return false;
-    }
+  // If pattern and string are empty, no match
+  if (oneIsEmpty) {
+    return null;
+  } else if (patternIsBigger) {
+    return null;
   }
+  let indexInString = 0;
+  while (indexInString <= stringLen) {
+    let currentMatchesFirstInPattern = string[indexInString] === pattern[0];
+    let patterStartsWithWildcar = pattern[0] === "*";
+    if (currentMatchesFirstInPattern || patterStartsWithWildcar) {
+      let indexInPattern = 0;
+      output = "";
+      while (indexInPattern <= patternLen) {
+        let consecutivesDontMatch =
+          pattern[indexInPattern] !== string[indexInString];
+        let letterInPatternIsNotWildcard = pattern[indexInPattern] !== "*";
 
-  // Return true if all characters in both the pattern and input string have been matched
-  return patternIndex === pattern.length && stringIndex === string.length;
+        if (consecutivesDontMatch && letterInPatternIsNotWildcard) {
+          break;
+        }
+        output += string[indexInString];
+        // console.log("aqui", pattern[indexInPattern], output);
+        if (output.length === patternLen) {
+          return output;
+        }
+
+        indexInPattern++;
+        indexInString++;
+      }
+    }
+    // console.log("Current: ", string[indexInString]);
+    // console.log("output: ", output);
+    indexInString++;
+  }
 }
 
 let pattern1 = "hel*o";
 let string1 = "hello";
 let string2 = "helo";
 
-console.log(matchString(pattern1, string1)); // Output: true
-console.log(matchString(pattern1, string2)); // Output: false
+console.log("1: ", matchString(pattern1, string1)); // Output: hello
+console.log("2: ", matchString(pattern1, string2)); // Output: null
 
 let pattern2 = "*abc";
 let string3 = "abc";
 let string4 = "xabc";
 
-console.log(matchString(pattern2, string3)); // Output: true
-console.log(matchString(pattern2, string4)); // Output: true
+console.log("3: ", matchString(pattern2, string3)); // Output: null
+console.log("4: ", matchString(pattern2, string4)); // Output: xabc
 
 let pattern3 = "a*b*c";
 let string5 = "abc";
-let string6 = "axbxc";
+let string6 = "axbrc";
 
-console.log(matchString(pattern3, string5)); // Output: true
-console.log(matchString(pattern3, string6)); // Output: true
+console.log("5: ", matchString(pattern3, string5)); // Output: null
+console.log("6: ", matchString(pattern3, string6)); // Output: axbrc
 
-let pattern4 = "a*b*c*";
-let string7 = "abc";
-let string8 = "axbxc";
+let pattern5 = "*";
+let string9 = "hello world";
+console.log("7: ", matchString(pattern5, string9)); // Output: h
 
-console.log(matchString(pattern4, string7)); // Output: false
-console.log(matchString(pattern4, string8)); // Output: false
+let pattern6 = "l*o";
+let string10 = "hello world";
+console.log("8: ", matchString(pattern6, string10)); // Output: llo
+
+let pattern7 = "*h";
+let string11 = "h";
+console.log("9: ", matchString(pattern7, string11)); // Output: null
