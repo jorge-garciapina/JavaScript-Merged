@@ -1,28 +1,31 @@
 function isConsecutive(input) {
-  // Part 1:
-  // Check if the input matches any of the banned strings:
-  if (input === "1234" || input === "qwert" || input === "asdf") {
-    return false;
-  }
-
-  // Part 2:
-  // Looking for 4 or more consecutive characters on the keyboard:
   // Characters in keyboard's order:
   let keyboard = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"];
 
-  // Convert keyboard to a flat string for easier searching
-  keyboard = keyboard.join("");
+  // Check for four or more consecutive characters in any order:
+  for (let row of keyboard) {
+    for (let i = 0; i <= input.length - 4; i++) {
+      let testSubString = input.substr(i, 4);
+      let isSubstringConsecutive = row.includes(testSubString);
+      function reverseString(str) {
+        return str.split("").reverse().join("");
+      }
+      let isReversedConsecutive = row.includes(reverseString(testSubString));
 
-  // Check if each character and the next 3 characters are
-  // in the keyboard string
-  for (let i = 0; i < input.length - 3; i++) {
-    let testString = input.substr(i, 4);
-    if (keyboard.indexOf(testString) !== -1) {
-      return false;
+      if (isSubstringConsecutive || isReversedConsecutive) {
+        return false;
+      }
     }
   }
 
   return true;
 }
 
-console.log(isConsecutive("assdf8gh7"));
+console.log(isConsecutive("rewqmkrp")); // returns false
+console.log(isConsecutive("4321")); // returns false
+console.log(isConsecutive("7895")); // returns false
+console.log(isConsecutive("abacyuio")); // returns false
+console.log(isConsecutive("assdf8gh7")); // returns true
+console.log(isConsecutive("fdsa1")); // returns false
+console.log(isConsecutive("asdfg1234")); // returns false
+console.log(isConsecutive("hello")); // returns true
