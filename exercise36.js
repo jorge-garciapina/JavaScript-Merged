@@ -2,7 +2,6 @@
 // the power of X from a specified number.
 
 function myPowerFn(n) {
-  let number = n;
   return (power) => {
     return Math.pow(n, power);
   };
