@@ -14,7 +14,7 @@ function myLog() {
       // 3) -self- is a variable with -prop- scope
       //    which means that functions inside -prop-
       //    can access -self-
-      var self = this;
+      let self = this;
       // 4) Because of line 17, -self- and -this-
       //    are equal, which means that both share
       //    the -bar- and -foo- properties
@@ -36,6 +36,6 @@ function myLog() {
   };
 }
 
-var obj = myLog();
+let obj = myLog();
 obj.prop();
 obj.rrr;
