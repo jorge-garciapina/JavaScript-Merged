@@ -14,9 +14,9 @@
       // There are two scopes in this part:
       // 1) Block inside the anonymous IIFE
       // 2) Block outside
-      var foo = "hello";
+      let foo = "hello";
       (function () {
-        var bar = "World";
+        let bar = "World";
         // In this alert it is possible to access
         // -foo- because it is a global variable
         alert(foo + bar);
@@ -68,7 +68,7 @@
       // -----START: PART 4-----
       console.log("PART 4");
       // This code creates an object obj with a property -prop-
-      var obj = {
+      let obj = {
         prop: {},
       };
 
