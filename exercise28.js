@@ -1,4 +1,4 @@
-var async = {
+let async = {
   getAll: function (urlArray, callback) {
     // Store the results of the AJAX calls in an object
     let results = {};
