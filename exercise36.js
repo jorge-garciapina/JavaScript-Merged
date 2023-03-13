@@ -7,7 +7,7 @@ function myPowerFn(n) {
   };
 }
 
-var n = myPowerFn(3);
+let n = myPowerFn(3);
 n(2); // output: 9  (3^2)
 
 console.log(n(2));
