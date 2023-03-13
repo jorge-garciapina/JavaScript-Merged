@@ -1,7 +1,7 @@
 // Given the following object definition, add a method called printName()
 // that returns the firstname plus the lastname when invoked.
 
-var candidate = {
+let candidate = {
   name: {
     firstName: "John",
     lastName: "Galt",
