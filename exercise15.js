@@ -1,10 +1,10 @@
 // Given the following code snippet of a module, create two public
 // methods and 1 private method:
-//    var foo = (function () { /* … */ })();
+//    let foo = (function () { /* … */ })();
 //    foo.bar();
 //    foo.test();
 
-var foo = (function () {
+let foo = (function () {
   function privateMethod() {
     return " method";
   }
