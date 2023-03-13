@@ -10,14 +10,14 @@
 // is the return statement of the functions (-foo1- -foo2-)
 
 function foo1() {
-  var fn = function () {
+  let fn = function () {
     console.log(this.foo);
   };
   return { foo: "bar" };
 }
 
 function foo2() {
-  var fn = function () {
+  let fn = function () {
     console.log(this.foo);
   };
   return { foo: "baz" };
