@@ -12,12 +12,17 @@ console.log("hello world".exclamation());
 
 // Part 2:
 function add(...args) {
+  let noArgumentsGiven = args.length === 0;
+  if (noArgumentsGiven) {
+    return "No arguments";
+  }
   // ES6 syntax: Arrow function
   return args.reduce((a, b) => {
     return a + b;
   });
 }
 
+console.log(add());
 console.log(add(2, 5));
 console.log(add(7, 11));
 console.log(add(12, 8, 5, 6));
