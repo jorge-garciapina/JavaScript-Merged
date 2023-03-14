@@ -1,0 +1,62 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #dddddd;
+}
+
+.table-head {
+  font-size: 1.5rem;
+}
+
+.add-candidate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 300px;
+  height: 50px;
+  background-color: #dddddd;
+  font-size: 2rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.create-user-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  font-size: 1.2rem;
+}
+.create-user-button {
+  margin-top: 10px;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.create-user-button:active {
+  background-color: antiquewhite;
+}
+
+.userButton {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.userButton:active {
+  background-color: antiquewhite;
+}

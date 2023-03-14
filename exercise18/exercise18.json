@@ -1,0 +1,34 @@
+{
+  "candidates": [
+    {
+      "name": "Donald",
+      "lastName": "Trump",
+      "phone": "27788",
+      "id": 1
+    },
+    {
+      "name": "James",
+      "lastName": "Dean",
+      "phone": "294854",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Mark",
+      "lastName": "Sugar",
+      "phone": 225887
+    },
+    {
+      "id": 4,
+      "name": "Sarah",
+      "lastName": "Obrador",
+      "phone": 11447
+    },
+    {
+      "name": "Mark",
+      "lastName": "Ronson",
+      "phone": "18741",
+      "id": 5
+    }
+  ]
+}
