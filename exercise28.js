@@ -1,39 +1,54 @@
-let async = {
-  getAll: function (urlArray, callback) {
-    // Store the results of the AJAX calls in an object
-    let results = {};
+const async = {
+  getAll: async function (urlArray, callback) {
+    const results = {};
 
-    // Create an array of Promises for each AJAX call
-    let promises = urlArray.map((url, index) => {
-      return new Promise((resolve, reject) => {
-        // Make the AJAX call using the provided URL
-        let xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // Add the result of the AJAX call to the results object
-            results[index + 1] = xhr.responseText;
-            resolve();
-          }
-        };
-        xhr.send();
+    try {
+      const promises = urlArray.map((ajaxCall, index) => {
+        return ajaxCall().then((data) => {
+          results[index + 1] = data;
+        });
       });
-    });
 
-    // Wait for all Promises to complete
-    Promise.all(promises)
-      .then(() => {
-        // Call the callback function with the results object as the context
-        callback.call(results);
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the AJAX calls
-        console.error(error);
-      });
+      await Promise.all(promises);
+      callback.call(results);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   },
 };
 
-// To use this function:
-async.getAll([axCall1, axCall2], function () {
-  console.log(this); // This will log the results object, which will contain the results of the AJAX calls
-});
+// Example usage:
+const axCall1 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Simulate a possible error
+      const error = Math.random() > 0.5;
+
+      if (error) {
+        reject("Error in first function");
+      } else {
+        resolve("Result of first function");
+      }
+    }, 1000);
+  });
+};
+
+const axCall2 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Simulate a possible error
+      const error = Math.random() > 0.5;
+
+      if (error) {
+        reject("Error in second function");
+      } else {
+        resolve("Result of second function");
+      }
+    }, 500);
+  });
+};
+const callback = function () {
+  console.log("Context:", this);
+};
+
+async.getAll([axCall1, axCall2], callback);
