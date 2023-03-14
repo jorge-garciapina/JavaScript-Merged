@@ -27,21 +27,24 @@
   </head>
   <body>
     <div id="hiddenDiv">Some text goes here</div>
-    <a id="id1" onclick="toggleDiv()">Show</a>
-  </body>
-  <script>
-    function toggleDiv() {
-      // Div to hide:
-      let hiddenDiv = document.getElementById("hiddenDiv");
-      let styles = window.getComputedStyle(hiddenDiv);
-      let isHidden = styles.display === "none";
+    <a id="id1" onclick="toggleDiv()">Click to show content</a>
+    <script>
+      function toggleDiv() {
+        // Div to hide:
+        let hiddenDiv = document.getElementById("hiddenDiv");
+        let styles = window.getComputedStyle(hiddenDiv);
+        let isHidden = styles.display === "none";
+        let linkElement = document.getElementById("id1");
 
-      // Hide and Show functionallity
-      if (isHidden) {
-        hiddenDiv.style.display = "block";
-      } else {
-        hiddenDiv.style.display = "none";
+        // Hide and Show functionallity
+        if (isHidden) {
+          hiddenDiv.style.display = "block";
+          linkElement.textContent = "Click to hide content";
+        } else {
+          hiddenDiv.style.display = "none";
+          linkElement.textContent = "Click to show content";
+        }
       }
-    }
-  </script>
+    </script>
+  </body>
 </html>
