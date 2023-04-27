@@ -20,7 +20,8 @@ body {
   width: 100px;
   height: 30px;
   position: fixed;
-  top: 100px;
+  top: 50px;
+  left: 1550px;
 }
 
 .circle {
@@ -29,8 +30,8 @@ body {
   height: 30px;
   border-radius: 30px;
   position: fixed;
-  top: 100px;
-  left: 80px;
+  top: 50px;
+  left: 1550px;
 }
 
 .reload {
