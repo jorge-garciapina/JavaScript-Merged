@@ -4,22 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const circle = document.getElementById("circle");
   let isAnimating = false;
 
-  mainContainer.addEventListener("mousemove", function (event) {
-    cannon.style.top = event.screenY - 70 + "px";
+  function moveCannonAndCircle(event) {
+    cannon.style.top = event.clientY - 15 + "px";
     if (!isAnimating) {
-      circle.style.top = event.screenY - 70 + "px";
+      circle.style.top = event.clientY - 15 + "px";
     }
-  });
+  }
+
+  // Set the initial position of the cannon and the ball to match the mouse position
+  mainContainer.dispatchEvent(
+    new MouseEvent("mousemove", { clientY: window.innerHeight / 2 })
+  );
+
+  mainContainer.addEventListener("mousemove", moveCannonAndCircle);
 
   mainContainer.addEventListener("click", function (event) {
     if (!isAnimating) {
       isAnimating = true;
       circle.animate(
         {
-          left: "100vw",
-          top: event.screenY - 70 + "px",
+          left: "-100vw",
+          // Removed the 'top' property from the animation
         },
-        500
+        900
       ).onfinish = function () {
         isAnimating = false;
         circle.style.display = "none"; // hide the circle after the animation ends
