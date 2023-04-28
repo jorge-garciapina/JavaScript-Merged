@@ -29,12 +29,12 @@ String.prototype.reverseWords = function () {
   // Split the original string into words
   let words = this.split(" ");
   let output = "";
-  // Iterate over the words in reverse order
-  for (let i = words.length - 1; i >= 0; i--) {
-    // Append each word to the `output` string
-    output += words[i];
+  // Iterate over the words
+  for (let i = 0; i < words.length; i++) {
+    // Reverse each word using the `reverse()` method and append it to the `output` string
+    output += words[i].reverse();
     // Add a space if not at the last word
-    if (i > 0) {
+    if (i < words.length - 1) {
       output += " ";
     }
   }
