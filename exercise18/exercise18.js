@@ -33,7 +33,7 @@ async function getData() {
       modifyUserButton.textContent = "Modify";
 
       deleteUserButton.onclick = () => {
-        delteUser(userID);
+        deleteUser(userID);
       };
 
       modifyUserButton.onclick = () => {
@@ -55,7 +55,7 @@ async function getData() {
 
 getData();
 
-async function delteUser(id) {
+async function deleteUser(id) {
   const response = await fetch("http://localhost:3000/candidates/" + id, {
     method: "DELETE",
   });
