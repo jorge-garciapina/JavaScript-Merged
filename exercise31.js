@@ -1,35 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Get all p elements on the page
-  let paragraphsInPage = document.querySelectorAll("p");
+  // Add a click event listener to the document
+  document.addEventListener("click", function (event) {
+    // Check if the clicked element is a "Toggle" paragraph
+    if (
+      event.target.tagName === "P" &&
+      event.target.textContent.indexOf("Toggle") !== -1
+    ) {
+      // Get all even paragraphs (content paragraphs)
+      const contentParagraphs = document.querySelectorAll("p:nth-child(even)");
 
-  let currentlyShownAdjacent = null;
-
-  // Iterate over each p element
-  paragraphsInPage.forEach(function (p) {
-    // If the text content of the p element contains the word "Toggle"
-    if (p.textContent.indexOf("Toggle") !== -1) {
-      // Add a click event listener to the p element
-      p.addEventListener("click", function () {
-        // Get the next sibling of the clicked p element
-        let adjacentP = p.nextElementSibling;
-        let stylesOfAdjacent = window.getComputedStyle(adjacentP);
-
-        let isHidden = stylesOfAdjacent.display === "none";
-
-        // Hide the currently shown adjacent element, if any
-        if (currentlyShownAdjacent && currentlyShownAdjacent !== adjacentP) {
-          currentlyShownAdjacent.style.display = "none";
-        }
-
-        // Show the clicked adjacent element
-        if (isHidden) {
-          adjacentP.style.display = "block";
-          currentlyShownAdjacent = adjacentP;
-        } else {
-          adjacentP.style.display = "none";
-          currentlyShownAdjacent = null;
-        }
+      // Hide all content paragraphs
+      contentParagraphs.forEach((paragraph) => {
+        paragraph.classList.add("hidden");
       });
+
+      // Get the next sibling of the clicked p element
+      let adjacentP = event.target.nextElementSibling;
+
+      // Remove the "hidden" class on the adjacent p element
+      adjacentP.classList.remove("hidden");
     }
   });
 });
