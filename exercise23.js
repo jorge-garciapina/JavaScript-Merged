@@ -1,29 +1,40 @@
-// Using a "Generator Function"
+function generateUniqueRandom(min, max) {
+  // A Set is used to store the generated numbers.
+  // This ensures that each number is unique as duplicates are not allowed in a Set.
+  let generatedNumbers = new Set();
 
-function* uniqueRandomIntGenerator(min, max) {
-  const rangeSize = max - min + 1;
+  // The function returns another function that generates the unique random numbers.
+  return function () {
+    // Check if all numbers within the range have been generated.
+    // If so, throw an error to prevent generating numbers outside the range.
+    if (generatedNumbers.size >= max - min + 1) {
+      throw new Error("All numbers in the range have been generated");
+    }
 
-  if (rangeSize <= 0) {
-    throw new Error("Invalid range: max must be greater than min");
-  }
+    // Generate a random number within the range.
+    let num = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  const availableNumbers = Array.from(
-    { length: rangeSize },
-    (_, index) => index + min
-  );
+    // If the generated number is already in the Set, generate a new one.
+    // This loop continues until a unique number is found.
+    while (generatedNumbers.has(num)) {
+      num = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-  while (availableNumbers.length > 0) {
-    const randomIndex = Math.floor(Math.random() * availableNumbers.length);
-    const randomNumber = availableNumbers.splice(randomIndex, 1)[0];
-    yield randomNumber;
-  }
+    // Add the unique number to the Set and return it.
+    generatedNumbers.add(num);
+    return num;
+  };
 }
 
-// Example usage:
-const min = 1;
-const max = 10;
-const generator = uniqueRandomIntGenerator(min, max);
-
-for (let i = 0; i < max - min + 1; i++) {
-  console.log(generator.next().value);
-}
+let random = generateUniqueRandom(1, 10);
+console.log("Example1", random());
+console.log("Example2", random());
+console.log("Example3", random());
+console.log("Example4", random());
+console.log("Example5", random());
+console.log("Example6", random());
+console.log("Example7", random());
+console.log("Example8", random());
+console.log("Example9", random());
+console.log("Example10", random());
+console.log("Example11: Error", random());
