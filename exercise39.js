@@ -1,6 +1,13 @@
-function isConsecutive(input) {
-  // Characters in keyboard's order:
-  let keyboard = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"];
+  // Characters in keyboard's order (both lowercase and uppercase):
+  let keyboard = [
+    "1234567890",
+    "qwertyuiop",
+    "asdfghjkl",
+    "zxcvbnm",
+    "QWERTYUIOP",
+    "ASDFGHJKL",
+    "ZXCVBNM",
+  ];
 
   // Check for four or more consecutive characters in any order:
   for (let row of keyboard) {
@@ -20,12 +27,14 @@ function isConsecutive(input) {
 
   return true;
 }
-
-console.log(isConsecutive("rewqmkrp")); // returns false
-console.log(isConsecutive("4321")); // returns false
-console.log(isConsecutive("7895")); // returns false
-console.log(isConsecutive("abacyuio")); // returns false
-console.log(isConsecutive("assdf8gh7")); // returns true
-console.log(isConsecutive("fdsa1")); // returns false
-console.log(isConsecutive("asdfg1234")); // returns false
-console.log(isConsecutive("hello")); // returns true
+console.log("1: ", isValidInput("qwert")); // returns false
+console.log("2: ", isValidInput("1234")); // returns false
+console.log("3: ", isValidInput("rewqmkrp")); // returns false
+console.log("4: ", isValidInput("4321")); // returns false
+console.log("5: ", isValidInput("7895")); // returns true
+console.log("6: ", isValidInput("abacyuio")); // returns false
+console.log("7: ", isValidInput("assdf8gh7")); // returns true
+console.log("8: ", isValidInput("fdsa1")); // returns false
+console.log("9: ", isValidInput("asdfg1234")); // returns false
+console.log("10: ", isValidInput("hello")); // returns true
+console.log("11: ", isValidInput("ASDF")); // returns true
