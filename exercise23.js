@@ -1,40 +1,19 @@
-function generateUniqueRandom(min, max) {
-  // A Set is used to store the generated numbers.
-  // This ensures that each number is unique as duplicates are not allowed in a Set.
-  let generatedNumbers = new Set();
+function generateUniqueRandomNumbers(min, max, count) {
+  if (count > max - min + 1) {
+    throw new Error("Count is larger than the range of possible numbers.");
+  }
 
-  // The function returns another function that generates the unique random numbers.
-  return function () {
-    // Check if all numbers within the range have been generated.
-    // If so, throw an error to prevent generating numbers outside the range.
-    if (generatedNumbers.size >= max - min + 1) {
-      throw new Error("All numbers in the range have been generated");
-    }
+  // Generate array with numbers [min, max]
+  const numbers = Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
-    // Generate a random number within the range.
-    let num = Math.floor(Math.random() * (max - min + 1)) + min;
+  // Shuffle array
+  for (let i = numbers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+  }
 
-    // If the generated number is already in the Set, generate a new one.
-    // This loop continues until a unique number is found.
-    while (generatedNumbers.has(num)) {
-      num = Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    // Add the unique number to the Set and return it.
-    generatedNumbers.add(num);
-    return num;
-  };
+  // Slice count numbers from the shuffled array
+  return numbers.slice(0, count);
 }
 
-let random = generateUniqueRandom(1, 10);
-console.log("Example1", random());
-console.log("Example2", random());
-console.log("Example3", random());
-console.log("Example4", random());
-console.log("Example5", random());
-console.log("Example6", random());
-console.log("Example7", random());
-console.log("Example8", random());
-console.log("Example9", random());
-console.log("Example10", random());
-console.log("Example11: Error", random());
+console.log(generateUniqueRandomNumbers(1, 100, 101));
