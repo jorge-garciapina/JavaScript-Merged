@@ -1,3 +1,4 @@
+function isValidInput(input) {
   // Characters in keyboard's order (both lowercase and uppercase):
   let keyboard = [
     "1234567890",
