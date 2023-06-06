@@ -8,7 +8,7 @@ function isValidInput(input) {
     "QWERTYUIOP",
     "ASDFGHJKL",
     "ZXCVBNM",
-  ];
+  ]; 
 
   // Check for four or more consecutive characters in any order:
   for (let row of keyboard) {
