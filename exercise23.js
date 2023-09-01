@@ -61,7 +61,7 @@ function computeA(m) {
 }
 
 // Function to generate unique random numbers within a range.
-function generateUniqueRandomNumbers(min, max) {
+function* generateUniqueRandomNumbers(min, max) {
   let m = max - min + 1;
 
   // Check if 'b' and 'm' are coprime.
@@ -75,25 +75,21 @@ function generateUniqueRandomNumbers(min, max) {
   let seed = Math.floor(Math.random() * m);
   let count = 0;
 
-  return function () {
-    if (count < 2 * m) {
-      seed = (a * seed + b) % m;
-      let value = min + seed;
-      count++;
-      return value;
-    } else {
-      return "Limit reached";
-    }
-  };
+  while (count < 2 * m) {
+    seed = (a * seed + b) % m;
+    let value = min + seed;
+    count++;
+    yield value;
+  }
 }
 
 const min = 1;
-const max = 4;
+const max = 8;
 
 const interval = generateUniqueRandomNumbers(min, max);
 
 for (let i = min; i <= max; i++) {
-  console.log(`${i}: `, interval()); // Print the generated numbers within the interval.
+  console.log(`${i}: `, interval.next().value); // Print the generated numbers within the interval.
 }
 
 
