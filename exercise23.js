@@ -1,9 +1,3 @@
-// Introduction to the LCG:
-// A Linear Congruential Generator (LCG) is a type of pseudorandom number generator that generates a sequence of numbers
-// based on a linear equation. The equation is of the form: Xn+1 = (a * Xn + b) mod m.
-// 'Xn' is the current value in the sequence, 'a' is the multiplier, 'b' is the increment, and 'm' is the modulus.
-// LCGs have certain properties and limitations, and the choice of parameters (a, b, and m) affects the quality of the generated sequence.
-
 // Function to compute the greatest common divisor of two numbers.
 function gcd(a, b) {
   if (b === 0) {
@@ -11,17 +5,6 @@ function gcd(a, b) {
   } else {
     return gcd(b, a % b);
   }
-}
-
-// Function to find all multiples of a number.
-function findMultiples(num) {
-  var multiples = [];
-  for (var i = Math.floor(num / 2); i >= 1; i--) {
-    if (num % i === 0) {
-      multiples.push(i);
-    }
-  }
-  return multiples;
 }
 
 // Function to check if a number is prime.
@@ -38,58 +21,53 @@ function isPrime(num) {
   return true;
 }
 
-// Function to find all prime multiples of a number.
-function findPrimeMultiples(num) {
-  var multiples = findMultiples(num);
-
-  var primeMultiples = multiples.filter((number) => {
-    return isPrime(number);
-  });
-  return primeMultiples;
-}
-
-// Function to compute the value of 'a' for the LCG.
+// Function to compute 'a' for the LCG, adjusted to Hull-Dobell Theorem.
 function computeA(m) {
-  const primeMultiples = findPrimeMultiples(m);
-  let a = primeMultiples.reduce((a, b) => {
-    return a * b;
-  }, 1);
-  if (m % 4 === 0) {
-    a = a * 4;
+  // Prime factor 4 is included only if m is a multiple of 4
+  const factors = m % 4 === 0 ? [4] : [];
+
+  // Include all prime factors of m
+  let num = m;
+  for (let i = 2; i <= Math.sqrt(m); i++) {
+    while (num % i === 0) {
+      if (isPrime(i)) factors.push(i);
+      num /= i;
+    }
   }
-  return a + 1;
+
+  if (num > 1) factors.push(num); // Remaining large prime factor
+
+  // Compute a according to Hull-Dobell
+  const a = factors.reduce((acc, val) => acc * val, 1) + 1;
+
+  return a;
 }
 
 // Function to generate unique random numbers within a range.
 function* generateUniqueRandomNumbers(min, max) {
-  let m = max - min + 1;
+  const m = max - min + 1;
 
-  // Check if 'b' and 'm' are coprime.
-  if (gcd(1, m) !== 1) {
-    return "b and m are not coprime";
-  }
-
-  let a = computeA(m);
+  // Compute 'a' using Hull-Dobell Theorem
+  const a = computeA(m);
 
   let b = 1;
-  let seed = Math.floor(Math.random() * m);
+  let seed = Math.floor(Math.random() * m); // Random starting seed
   let count = 0;
 
-  while (count < 2 * m) {
+  while (count < m) {
+    // Generating m unique numbers
     seed = (a * seed + b) % m;
-    let value = min + seed;
+    const value = min + seed;
     count++;
     yield value;
   }
 }
 
-const min = 1;
-const max = 8;
+const min = 8;
+const max = 11;
 
 const interval = generateUniqueRandomNumbers(min, max);
 
 for (let i = min; i <= max; i++) {
   console.log(`${i}: `, interval.next().value); // Print the generated numbers within the interval.
 }
-
-
